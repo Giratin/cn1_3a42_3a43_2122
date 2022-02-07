@@ -55,12 +55,33 @@ public class MyApplication {
             return;
         }
         
-        Form hi = new Form();
-        UIBuilder uib = new UIBuilder();
-        UIBuilder.registerCustomComponent("ImageViewer", ImageViewer.class);
-        Container cn = uib.createContainer(theme, "GUI 1");
-
-        hi = (Form) cn;
+        Form hi = new Form(new BoxLayout((BoxLayout.Y_AXIS)));
+        ImageViewer head = new ImageViewer(theme.getImage("head.png"));
+        hi.add(head);
+        Container bodyContainer = new Container(new FlowLayout(CENTER));
+        ImageViewer leftHand = new ImageViewer(theme.getImage("hand.png"));
+        ImageViewer rightHand = new ImageViewer(theme.getImage("hand.png"));
+        ImageViewer body = new ImageViewer(theme.getImage("body.png"));
+        
+        bodyContainer.addAll(leftHand, body, rightHand);
+        hi.add(bodyContainer);
+        
+        
+        Container legsContainer = new Container(new FlowLayout(CENTER));
+        ImageViewer leftLeg = new ImageViewer(theme.getImage("leg.png"));
+        ImageViewer rightLeg = new ImageViewer(theme.getImage("leg.png"));
+        
+        legsContainer.add(leftLeg);
+        legsContainer.add(rightLeg);
+        
+        hi.add(legsContainer);
+        
+//        UIBuilder uib = new UIBuilder();
+//        UIBuilder.registerCustomComponent("ImageViewer", ImageViewer.class);
+//        Container cn = uib.createContainer(theme, "GUI 1");
+//
+//        hi = (Form) cn;
+        
 
         hi.setTitle("3A42 & 3A43");
         hi.show();
